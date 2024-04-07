@@ -1,0 +1,1 @@
+The project aims at implementing a web application capable of creating and saving recipies for users.
