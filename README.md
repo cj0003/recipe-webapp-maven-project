@@ -42,14 +42,4 @@ Instructions on how to use the project or any specific features.
 
 - Provide instructions on how to test the application, including any test data or scenarios to consider.
 
-## Troubleshooting
 
-- Common issues users may encounter and their solutions.
-
-## License
-
-This project is licensed under the [License Name] License - see the [LICENSE.md](LICENSE.md) file for details.
-
-## Acknowledgments
-
-- Mention any contributors, tutorials, or resources used in the project.
