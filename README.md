@@ -29,10 +29,10 @@ Brief description of the project.
    - Paste the schema file contents into the query editor and execute it (or press F5) to create the schema.
 
 3. **Deploying the Application:**
-- Clone or download the project repository.
-- Import the project into your IDE.
-- Build the project using Maven or your IDE's build tool.
-- Run the project with tomcat.
+   - Clone or download the project repository.
+   - Import the project into your IDE.
+   - Build the project using Maven or your IDE's build tool.
+   - Run the project with Tomcat.
 
 ## Usage
 
