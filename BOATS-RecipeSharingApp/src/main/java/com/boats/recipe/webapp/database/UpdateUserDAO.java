@@ -1,4 +1,4 @@
-package com.boats.recipe.webapp.dao;
+package com.boats.recipe.webapp.database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,4 +1,4 @@
-package com.boats.recipe.webapp.dao;
+package com.boats.recipe.webapp.database;
 
 import com.boats.recipe.webapp.model.Category; // Make sure this import statement is present
 

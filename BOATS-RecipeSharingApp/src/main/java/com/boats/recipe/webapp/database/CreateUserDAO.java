@@ -1,12 +1,10 @@
-package com.boats.recipe.webapp.dao;
-
-import com.boats.recipe.webapp.model.User; // Assuming User class is in model package
+package com.boats.recipe.webapp.database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class SignupDAO extends AbstractDAO<Void> {
+public class CreateUserDAO extends AbstractDAO<Void> {
 
     private static final String SIGNUP_QUERY = "INSERT INTO User (username, password, name, surname, bio, email, registration_date) VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)";
 
@@ -17,7 +15,7 @@ public class SignupDAO extends AbstractDAO<Void> {
     private final String bio;
     private final String email;
 
-    public SignupDAO(Connection connection, String username, String password, String name, String surname, String bio, String email) {
+    public CreateUserDAO(Connection connection, String username, String password, String name, String surname, String bio, String email) {
         super(connection);
         this.username = username;
         this.password = password;

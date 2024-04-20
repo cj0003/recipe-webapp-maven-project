@@ -1,5 +1,4 @@
-package com.boats.recipe.webapp.dao;
-import com.boats.recipe.webapp.dao.DataAccessObject;
+package com.boats.recipe.webapp.database;
 import java.sql.Connection;
 import java.sql.SQLException;
 import org.apache.logging.log4j.LogManager;
