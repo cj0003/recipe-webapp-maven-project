@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class UpdateUserDAO extends AbstractDAO<Void> {
 
-    private static final String UPDATE_USER_QUERY = "UPDATE User SET username = ?, password = ?, name = ?, surname = ?, bio = ?, email = ? WHERE id = ?";
+    private static final String UPDATE_USER_QUERY = "UPDATE recipe_platform_schema.User SET username = ?, password = ?, name = ?, surname = ?, bio = ?, email = ? WHERE id = ?";
 
     private final int userId;
     private final String username;

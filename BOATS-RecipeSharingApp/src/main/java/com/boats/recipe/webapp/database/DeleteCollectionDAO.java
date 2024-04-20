@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DeleteCollectionDAO extends AbstractDAO<Void> {
 
-    private static final String DELETE_COLLECTION_SQL = "DELETE FROM Collection WHERE id = ?";
+    private static final String DELETE_COLLECTION_SQL = "DELETE FROM recipe_platform_schema.Collection WHERE id = ?";
 
     private final int collectionId;
 

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class UpdateRecipeDAO extends AbstractDAO<Void> {
 
-    private static final String UPDATE_RECIPE_SQL = "UPDATE Recipe SET title=?, description=?, ingredients=?, method=?, prep_time=?, author=?, number_of_likes=?, upload_date=?, allergy_trigger=?, image=?, image_type=? WHERE id=?";
+    private static final String UPDATE_RECIPE_SQL = "UPDATE recipe_platform_schema.Recipe SET title=?, description=?, ingredients=?, method=?, prep_time=?, author=?, number_of_likes=?, upload_date=?, allergy_trigger=?, image=?, image_type=? WHERE id=?";
 
     private final Recipe recipe;
 

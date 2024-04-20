@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class CreateUserDAO extends AbstractDAO<Void> {
 
-    private static final String SIGNUP_QUERY = "INSERT INTO User (username, password, name, surname, bio, email, registration_date) VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)";
+    private static final String SIGNUP_QUERY = "INSERT INTO recipe_platform_schema.User (username, password, name, surname, bio, email, registration_date) VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)";
 
     private final String username;
     private final String password;

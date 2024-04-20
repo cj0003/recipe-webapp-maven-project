@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ReadAllergenDAO extends AbstractDAO<List<Allergen>> {
 
-    private static final String SELECT_ALLERGEN_SQL = "SELECT name FROM Allergen";
+    private static final String SELECT_ALLERGEN_SQL = "SELECT name FROM recipe_platform_schema.Allergen";
 
     public ReadAllergenDAO(Connection con) {
         super(con);

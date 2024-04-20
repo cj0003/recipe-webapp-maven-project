@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ReadCategoryDAO extends AbstractDAO<List<Category>> {
 
-    private static final String SELECT_ALL_CATEGORIES_SQL = "SELECT id, name FROM Category";
+    private static final String SELECT_ALL_CATEGORIES_SQL = "SELECT id, name FROM recipe_platform_schema.Category";
 
     public ReadCategoryDAO(Connection con) {
         super(con);

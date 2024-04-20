@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class CreateCollectionDAO extends AbstractDAO<Void> {
 
-    private static final String INSERT_COLLECTION_SQL = "INSERT INTO Collection (title, description, creator) " +
+    private static final String INSERT_COLLECTION_SQL = "INSERT INTO recipe_platform_schema.Collection (title, description, creator) " +
             "VALUES (?, ?, ?)";
 
     private final String title;

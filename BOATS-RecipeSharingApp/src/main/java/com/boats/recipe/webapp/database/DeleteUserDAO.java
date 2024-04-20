@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DeleteUserDAO extends AbstractDAO<Void> {
 
-    private static final String DELETE_USER_QUERY = "DELETE FROM User WHERE id = ?";
+    private static final String DELETE_USER_QUERY = "DELETE FROM recipe_platform_schema.User WHERE id = ?";
 
     private final int userId;
 

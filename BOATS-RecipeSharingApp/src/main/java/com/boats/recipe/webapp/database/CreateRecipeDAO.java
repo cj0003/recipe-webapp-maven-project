@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class CreateRecipeDAO extends AbstractDAO<Void> {
 
-    private static final String INSERT_RECIPE_SQL = "INSERT INTO Recipe (title, description, ingredients, method, prep_time, author, number_of_likes, upload_date, allergy_trigger, image, image_type) " +
+    private static final String INSERT_RECIPE_SQL = "INSERT INTO recipe_platform_schema.Recipe (title, description, ingredients, method, prep_time, author, number_of_likes, upload_date, allergy_trigger, image, image_type) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     private final Recipe recipe;

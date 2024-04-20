@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DeleteRecipeDAO extends AbstractDAO<Void> {
 
-    private static final String DELETE_RECIPE_SQL = "DELETE FROM Recipe WHERE id=?";
+    private static final String DELETE_RECIPE_SQL = "DELETE FROM recipe_platform_schema.Recipe WHERE id=?";
 
     private final int recipeId;
 

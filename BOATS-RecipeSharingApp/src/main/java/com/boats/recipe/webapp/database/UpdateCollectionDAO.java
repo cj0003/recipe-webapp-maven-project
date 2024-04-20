@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class UpdateCollectionDAO extends AbstractDAO<Void> {
 
-    private static final String UPDATE_COLLECTION_SQL = "UPDATE Collection SET title = ?, description = ? WHERE id = ?";
+    private static final String UPDATE_COLLECTION_SQL = "UPDATE recipe_platform_schema.Collection SET title = ?, description = ? WHERE id = ?";
 
     private final int collectionId;
     private final String newTitle;
