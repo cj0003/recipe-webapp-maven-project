@@ -1,45 +1,95 @@
 package com.boats.recipe.webapp.database;
 
+import com.boats.recipe.webapp.model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UpdateUserDAO extends AbstractDAO<Void> {
+/**
+ * Updates a user in the database.
+ */
+public final class UpdateUserDAO extends AbstractDAO<User> {
 
-    private static final String UPDATE_USER_QUERY = "UPDATE recipe_platform_schema.User SET username = ?, password = ?, name = ?, surname = ?, bio = ?, email = ? WHERE id = ?";
+    /**
+     * The SQL statement to be executed
+     */
+    private static final String STATEMENT = "UPDATE recipe_platform_schema.User SET name = ?, surname = ?, email = ?, password = ?, username = ?, bio = ?, reg_date = ?, image = ?, image_type = ? WHERE id = ? RETURNING *";
 
-    private final int userId;
-    private final String username;
-    private final String password;
-    private final String name;
-    private final String surname;
-    private final String bio;
-    private final String email;
+    /**
+     * The user to be updated in the database
+     */
+    private final User user;
 
-    public UpdateUserDAO(Connection connection, int userId, String username, String password, String name, String surname, String bio, String email) {
-        super(connection);
-        this.userId = userId;
-        this.username = username;
-        this.password = password;
-        this.name = name;
-        this.surname = surname;
-        this.bio = bio;
-        this.email = email;
+    /**
+     * Creates a new object for updating a user.
+     *
+     * @param con
+     *            the connection to the database.
+     * @param user
+     *            the user to be updated in the database.
+     */
+    public UpdateUserDAO(final Connection con, final User user) {
+        super(con);
+
+        if (user == null) {
+            LOGGER.error("The user cannot be null.");
+            throw new NullPointerException("The user cannot be null.");
+        }
+
+        this.user = user;
     }
 
     @Override
-    protected void doAccess() throws SQLException {
-        try (PreparedStatement pstmt = con.prepareStatement(UPDATE_USER_QUERY)) {
-            pstmt.setString(1, username);
-            pstmt.setString(2, password);
-            pstmt.setString(3, name);
-            pstmt.setString(4, surname);
-            pstmt.setString(5, bio);
-            pstmt.setString(6, email);
-            pstmt.setInt(7, userId);
-            pstmt.executeUpdate();
+    protected final void doAccess() throws SQLException {
 
-            LOGGER.info("User information updated for user ID: {}", userId);
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        // the updated user
+        User updatedUser = null;
+
+        try {
+            pstmt = con.prepareStatement(STATEMENT);
+            pstmt.setString(1, user.getName());
+            pstmt.setString(2, user.getSurname());
+            pstmt.setString(3, user.getEmail());
+            pstmt.setString(4, user.getPassword());
+            pstmt.setString(5, user.getUsername());
+            pstmt.setString(6, user.getBio());
+            pstmt.setObject(7, user.getRegistrationDate());
+            pstmt.setBytes(8, user.getImage());
+            pstmt.setString(9, user.getImageType());
+            pstmt.setInt(10, user.getId());
+
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                updatedUser = new User(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("surname"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("username"),
+                        rs.getString("bio"),
+                        rs.getTimestamp("reg_date"),
+                        rs.getBytes("image"),
+                        rs.getString("image_type")
+                );
+
+                LOGGER.info("User %d successfully updated in the database. {}", updatedUser.getId());
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+
+            if (pstmt != null) {
+                pstmt.close();
+            }
         }
+
+        outputParam = updatedUser;
     }
 }

@@ -1,31 +1,83 @@
 package com.boats.recipe.webapp.database;
 
+import com.boats.recipe.webapp.model.Collection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UpdateCollectionDAO extends AbstractDAO<Void> {
+/**
+ * Updates a collection in the database.
+ */
+public final class UpdateCollectionDAO extends AbstractDAO<Collection> {
 
-    private static final String UPDATE_COLLECTION_SQL = "UPDATE recipe_platform_schema.Collection SET title = ?, description = ? WHERE id = ?";
+    /**
+     * The SQL statement to be executed
+     */
+    private static final String STATEMENT = "UPDATE recipe_platform_schema.Collection SET title = ?, \"desc\" = ?, creator = ? WHERE id = ? RETURNING *";
 
-    private final int collectionId;
-    private final String newTitle;
-    private final String newDescription;
+    /**
+     * The collection to be updated in the database
+     */
+    private final Collection collection;
 
-    public UpdateCollectionDAO(Connection con, int collectionId, String newTitle, String newDescription) {
+    /**
+     * Creates a new object for updating a collection.
+     *
+     * @param con
+     *            the connection to the database.
+     * @param collection
+     *            the collection to be updated in the database.
+     */
+    public UpdateCollectionDAO(final Connection con, final Collection collection) {
         super(con);
-        this.collectionId = collectionId;
-        this.newTitle = newTitle;
-        this.newDescription = newDescription;
+
+        if (collection == null) {
+            LOGGER.error("The collection cannot be null.");
+            throw new NullPointerException("The collection cannot be null.");
+        }
+
+        this.collection = collection;
     }
 
     @Override
-    protected void doAccess() throws SQLException {
-        try (PreparedStatement pstmt = con.prepareStatement(UPDATE_COLLECTION_SQL)) {
-            pstmt.setString(1, newTitle);
-            pstmt.setString(2, newDescription);
-            pstmt.setInt(3, collectionId);
-            pstmt.executeUpdate();
+    protected final void doAccess() throws SQLException {
+
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        // the updated collection
+        Collection updatedCollection = null;
+
+        try {
+            pstmt = con.prepareStatement(STATEMENT);
+            pstmt.setString(1, collection.getTitle());
+            pstmt.setString(2, collection.getDescription());
+            pstmt.setInt(3, collection.getCreator());
+            pstmt.setInt(4, collection.getId());
+
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                updatedCollection = new Collection(
+                        rs.getInt("id"),
+                        rs.getString("title"),
+                        rs.getString("desc"),
+                        rs.getInt("creator")
+                );
+
+                LOGGER.info("Collection %d successfully updated in the database. {}", updatedCollection.getId());
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+
+            if (pstmt != null) {
+                pstmt.close();
+            }
         }
+
+        outputParam = updatedCollection;
     }
 }

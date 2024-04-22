@@ -7,8 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-//Takes in the User resource and reads the user from the database
-
+/**
+ * Reads a user from the database.
+ */
 public final class ReadUserDAO extends AbstractDAO<User> {
 
     private static final String STATEMENT = "SELECT * FROM recipe_platform_schema.user WHERE username = ? AND password = ?";
@@ -37,7 +38,6 @@ public final class ReadUserDAO extends AbstractDAO<User> {
             pstmt.setString(1, username);
             pstmt.setString(2, password);
             rs = pstmt.executeQuery();
-
 
             if (rs.next()) {
                 u = new User(

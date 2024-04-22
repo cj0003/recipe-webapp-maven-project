@@ -63,7 +63,7 @@ public final class DeleteUserDAO extends AbstractDAO<User> {
                         rs.getBytes("image"),
                         rs.getString("image_type"));
 
-                LOGGER.info("User with ID %d successfully deleted from the database.", user.getId());
+                LOGGER.info("User with ID %d successfully deleted from the database. {}", user.getId());
             }
         } finally {
             if (rs != null) {

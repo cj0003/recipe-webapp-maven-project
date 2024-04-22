@@ -65,7 +65,7 @@ public final class CreateCollectionDAO extends AbstractDAO<Collection> {
                         rs.getString("desc"),
                         rs.getInt("creator"));
 
-                LOGGER.info("Collection with ID %d successfully stored in the database.", createdCollection.getId());
+                LOGGER.info("Collection with ID %d successfully stored in the database. {}", createdCollection.getId());
             }
         } finally {
             if (pstmt != null) {

@@ -1,38 +1,35 @@
 package com.boats.recipe.webapp.database;
 
 import com.boats.recipe.webapp.model.Recipe;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Deletes a recipe from the database.
+ * Reads a recipe from the database.
  */
-public final class DeleteRecipeDAO extends AbstractDAO<Recipe> {
+public final class ReadRecipeDAO extends AbstractDAO<Recipe> {
 
     /**
      * The SQL statement to be executed
      */
-    private static final String STATEMENT = "DELETE FROM recipe_platform_schema.Recipe WHERE id = ? RETURNING *";
+    private static final String STATEMENT = "SELECT id, title, \"desc\", ingredients, instructions, prep_time, author, likes_num, upload_date, allergy_trigger, image, image_type FROM recipe_platform_schema.Recipe WHERE id = ?";
 
     /**
      * The ID of the recipe
      */
-    private final int id;
+    private final int recipeId;
 
     /**
-     * Creates a new object for deleting a recipe.
+     * Creates a new object for reading a recipe.
      *
-     * @param con
-     *            the connection to the database.
-     * @param id
-     *            the ID of the recipe.
+     * @param con      the connection to the database.
+     * @param recipeId the ID of the recipe.
      */
-    public DeleteRecipeDAO(final Connection con, final int id) {
+    public ReadRecipeDAO(final Connection con, final int recipeId) {
         super(con);
-        this.id = id;
+        this.recipeId = recipeId;
     }
 
     @Override
@@ -41,12 +38,12 @@ public final class DeleteRecipeDAO extends AbstractDAO<Recipe> {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
-        // the deleted recipe
+        // the read recipe
         Recipe recipe = null;
 
         try {
             pstmt = con.prepareStatement(STATEMENT);
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, recipeId);
 
             rs = pstmt.executeQuery();
 
@@ -63,9 +60,10 @@ public final class DeleteRecipeDAO extends AbstractDAO<Recipe> {
                         rs.getTimestamp("upload_date"),
                         rs.getBoolean("allergy_trigger"),
                         rs.getBytes("image"),
-                        rs.getString("image_type"));
+                        rs.getString("image_type")
+                );
 
-                LOGGER.info("Recipe with ID %d successfully deleted from the database. {}", recipe.getId());
+                LOGGER.info("Recipe with ID %d successfully read from the database. {}", recipe.getId());
             }
         } finally {
             if (rs != null) {
@@ -75,9 +73,9 @@ public final class DeleteRecipeDAO extends AbstractDAO<Recipe> {
             if (pstmt != null) {
                 pstmt.close();
             }
-
         }
 
         outputParam = recipe;
     }
 }
+

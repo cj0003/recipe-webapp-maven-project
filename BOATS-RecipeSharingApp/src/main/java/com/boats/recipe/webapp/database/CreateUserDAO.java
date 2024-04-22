@@ -80,7 +80,7 @@ public final class CreateUserDAO extends AbstractDAO<User> {
                         rs.getBytes("image"),
                         rs.getString("image_type"));
 
-                LOGGER.info("User with ID %d successfully stored in the database.", createdUser.getId());
+                LOGGER.info("User with ID %d successfully stored in the database. {}", createdUser.getId());
             }
         } finally {
             if (pstmt != null) {

@@ -74,7 +74,6 @@ public final class CreateRecipeDAO extends AbstractDAO<Recipe> {
                         rs.getString("desc"),
                         rs.getString("ingredients"),
                         rs.getString("instructions"),
-                        rs.getString("method"),
                         rs.getInt("prep_time"),
                         rs.getInt("author"),
                         rs.getInt("likes_num"),
@@ -83,7 +82,7 @@ public final class CreateRecipeDAO extends AbstractDAO<Recipe> {
                         rs.getBytes("image"),
                         rs.getString("image_type"));
 
-                LOGGER.info("Recipe with ID %d successfully stored in the database.", createdRecipe.getId());
+                LOGGER.info("Recipe with ID %d successfully stored in the database. {}", createdRecipe.getId());
             }
         } finally {
             if (pstmt != null) {
