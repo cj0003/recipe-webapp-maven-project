@@ -10,11 +10,8 @@ import java.sql.SQLException;
 
 /**
  * Reads a collection from the database.
- *
- * @author [Your Name]
- * @version 1.00
- * @since 1.00
  */
+
 public final class ReadCollectionDAO extends AbstractDAO<Collection> {
 
     /**

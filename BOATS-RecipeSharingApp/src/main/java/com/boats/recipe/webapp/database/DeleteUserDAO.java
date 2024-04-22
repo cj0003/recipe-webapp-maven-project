@@ -1,27 +1,80 @@
 package com.boats.recipe.webapp.database;
 
+import com.boats.recipe.webapp.model.User;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DeleteUserDAO extends AbstractDAO<Void> {
+/**
+ * Deletes a user from the database.
+ */
+public final class DeleteUserDAO extends AbstractDAO<User> {
 
-    private static final String DELETE_USER_QUERY = "DELETE FROM recipe_platform_schema.User WHERE id = ?";
+    /**
+     * The SQL statement to be executed
+     */
+    private static final String STATEMENT = "DELETE FROM recipe_platform_schema.User WHERE id = ? RETURNING *";
 
-    private final int userId;
+    /**
+     * The ID of the user
+     */
+    private final int id;
 
-    public DeleteUserDAO(Connection connection, int userId) {
-        super(connection);
-        this.userId = userId;
+    /**
+     * Creates a new object for deleting a user.
+     *
+     * @param con
+     *            the connection to the database.
+     * @param id
+     *            the ID of the user.
+     */
+    public DeleteUserDAO(final Connection con, final int id) {
+        super(con);
+        this.id = id;
     }
 
     @Override
-    protected void doAccess() throws SQLException {
-        try (PreparedStatement pstmt = con.prepareStatement(DELETE_USER_QUERY)) {
-            pstmt.setInt(1, userId);
-            pstmt.executeUpdate();
+    protected final void doAccess() throws SQLException {
 
-            LOGGER.info("User deleted with ID: {}", userId);
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        // the deleted user
+        User user = null;
+
+        try {
+            pstmt = con.prepareStatement(STATEMENT);
+            pstmt.setInt(1, id);
+
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                user = new User(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("surname"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("username"),
+                        rs.getString("bio"),
+                        rs.getTimestamp("reg_date"),
+                        rs.getBytes("image"),
+                        rs.getString("image_type"));
+
+                LOGGER.info("User with ID %d successfully deleted from the database.", user.getId());
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+
+            if (pstmt != null) {
+                pstmt.close();
+            }
         }
+
+        outputParam = user;
     }
 }

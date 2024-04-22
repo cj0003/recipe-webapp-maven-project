@@ -36,5 +36,37 @@ public class User {
     public final String getUsername() {
         return username;
     }
+
+    public final int getId() {
+        return id;
+    }
+
+    public final String getName() {
+        return name;
+    }
+
+    public final String getSurname() {
+        return surname;
+    }
+
+    public final String getBio() {
+        return bio;
+    }
+
+    public final String getEmail() {
+        return email;
+    }
+
+    public final Timestamp getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public final byte[] getImage() {
+        return image;
+    }
+
+    public final String getImageType() {
+        return imageType;
+    }
     // Omitted for brevity
 }

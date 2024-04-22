@@ -8,6 +8,7 @@ public class Recipe {
     private String title;
     private String description;
     private String ingredients;
+    private String instructions;
     private String method;
     private int preparationTime;
     private int author;
@@ -18,10 +19,12 @@ public class Recipe {
     private String imageType;
 
     // Constructor
-    public Recipe(String title, String description, String ingredients, String method, int preparationTime, int author, int numberOfLikes, Timestamp uploadDate, boolean allergyTrigger, byte[] image, String imageType) {
+    public Recipe(int id, String title, String description, String ingredients, String instructions, String method, int preparationTime, int author, int numberOfLikes, Timestamp uploadDate, boolean allergyTrigger, byte[] image, String imageType) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.ingredients = ingredients;
+        this.instructions = instructions;
         this.method = method;
         this.preparationTime = preparationTime;
         this.author = author;
@@ -64,6 +67,8 @@ public class Recipe {
     public void setIngredients(String ingredients) {
         this.ingredients = ingredients;
     }
+
+    public String getInstructions(){return instructions;}
 
     public String getMethod() {
         return method;
