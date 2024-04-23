@@ -8,7 +8,7 @@ public class Recipe {
     private String title;
     private String description;
     private String ingredients;
-    private String method;
+    private String instructions;
     private int preparationTime;
     private int author;
     private int numberOfLikes;
@@ -18,11 +18,12 @@ public class Recipe {
     private String imageType;
 
     // Constructor
-    public Recipe(String title, String description, String ingredients, String method, int preparationTime, int author, int numberOfLikes, Timestamp uploadDate, boolean allergyTrigger, byte[] image, String imageType) {
+    public Recipe(int id, String title, String description, String ingredients, String instructions, int preparationTime, int author, int numberOfLikes, Timestamp uploadDate, boolean allergyTrigger, byte[] image, String imageType) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.ingredients = ingredients;
-        this.method = method;
+        this.instructions = instructions;
         this.preparationTime = preparationTime;
         this.author = author;
         this.numberOfLikes = numberOfLikes;
@@ -65,13 +66,7 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
-    public String getMethod() {
-        return method;
-    }
-
-    public void setMethod(String method) {
-        this.method = method;
-    }
+    public String getInstructions(){return instructions;}
 
     public int getPreparationTime() {
         return preparationTime;
