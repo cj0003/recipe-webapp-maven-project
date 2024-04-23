@@ -2,7 +2,7 @@
 <Context>
     <Resource name="jdbc/boats" auth="Container" type="javax.sql.DataSource"
               maxTotal="100" maxIdle="30" maxWaitMillis="10000"
-              username="postgres" password="Cifu960327**"
+              username="postgres" password="Root"
               driverClassName="org.postgresql.Driver"
               factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
               url="jdbc:postgresql://localhost:5432/boats_recipe "/>
