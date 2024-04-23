@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Lists all the recipes that a user has made in the database.
  */
-public final class ListUserRecipesDAO extends AbstractDAO<List<Recipe>> {
+public final class ListAuthorsRecipesDAO extends AbstractDAO<List<Recipe>> {
 
     /**
      * The SQL statement to be executed
@@ -31,7 +31,7 @@ public final class ListUserRecipesDAO extends AbstractDAO<List<Recipe>> {
      * @param con    the connection to the database.
      * @param userID the user ID whose recipes will be listed
      */
-    public ListUserRecipesDAO(final Connection con, final int userID) {
+    public ListAuthorsRecipesDAO(final Connection con, final int userID) {
         super(con);
         this.userID = userID;
     }
