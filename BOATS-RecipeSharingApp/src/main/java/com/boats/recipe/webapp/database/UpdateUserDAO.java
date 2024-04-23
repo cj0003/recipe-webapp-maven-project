@@ -19,6 +19,7 @@ public final class UpdateUserDAO extends AbstractDAO<User> {
     /**
      * The user to be updated in the database
      */
+
     private final User user;
 
     /**
