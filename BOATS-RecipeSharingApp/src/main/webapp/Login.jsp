@@ -1,9 +1,17 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Mauilk
+  Date: 25-04-2024
+  Time: 14:47
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe Sharing Platform - Sign Up</title>
+    <title>Login</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,7 +20,7 @@
             padding: 0;
         }
         .container {
-            max-width: 600px;
+            max-width: 400px;
             margin: 50px auto;
             padding: 20px;
             background-color: #fff;
@@ -26,10 +34,8 @@
         form {
             margin-top: 20px;
         }
-        input[type="text"],
         input[type="email"],
-        input[type="password"],
-        textarea {
+        input[type="password"] {
             width: 100%;
             padding: 10px;
             margin: 5px 0;
@@ -37,9 +43,6 @@
             border-radius: 5px;
             box-sizing: border-box;
             font-size: 16px;
-        }
-        textarea {
-            height: 100px;
         }
         input[type="submit"] {
             width: 100%;
@@ -55,39 +58,30 @@
         input[type="submit"]:hover {
             background-color: #45a049;
         }
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .signup-link a {
+            color: #4caf50;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
 <div class="container">
-    <h2>Sign Up</h2>
-    <form action="signup" method="post">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
-
-        <label for="surname">Surname</label>
-        <input type="text" id="surname" name="surname" required>
-
+    <h2>Login</h2>
+    <form action="login" method="post">
         <label for="email">Email</label>
         <input type="email" id="email" name="email" required>
 
         <label for="password">Password</label>
         <input type="password" id="password" name="password" required>
 
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" required>
-
-        <label for="bio">Bio</label>
-        <textarea id="bio" name="bio"></textarea>
-
-        <label for="image">Image</label>
-        <input type="file" id="image" name="image" accept="image/*">
-
-        <input type="submit" value="Sign Up">
-
-
+        <input type="submit" value="Login">
     </form>
-    <div class="Login-link">
-        <p>Already a user? <a href="Login.jsp">Login</a></p>
+    <div class="signup-link">
+        <p>Not a user yet? <a href="index.jsp">Sign Up</a></p>
     </div>
 </div>
 </body>

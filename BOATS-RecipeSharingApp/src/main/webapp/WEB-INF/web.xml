@@ -7,13 +7,13 @@
   <display-name>Archetype Created Web Application</display-name>
 
   <servlet>
-    <servlet-name>AbstractDatabaseServlet</servlet-name>
-    <servlet-class>com.boats.recipe.webapp.servlet.AbstractDatabaseServlet</servlet-class>
+    <servlet-name>RestManagerServlet</servlet-name>
+    <servlet-class>com.boats.recipe.webapp.servlet.RestDispatcherServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>AbstractDatabaseServlet</servlet-name>
-    <url-pattern>/home</url-pattern>
+    <servlet-name>RestManagerServlet</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
   </servlet-mapping>
 
   <resource-ref>
