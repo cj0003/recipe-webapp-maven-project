@@ -11,9 +11,22 @@
     <servlet-class>com.boats.recipe.webapp.servlet.RestDispatcherServlet</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>UserManagerServlet</servlet-name>
+    <display-name>UserManagerServlet</display-name>
+    <description></description>
+    <servlet-class>com.boats.recipe.webapp.servlet.RestUserDispatcherServlet</servlet-class>
+  </servlet>
+
+
   <servlet-mapping>
     <servlet-name>RestManagerServlet</servlet-name>
     <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>UserManagerServlet</servlet-name>
+    <url-pattern>/user/*</url-pattern>
   </servlet-mapping>
 
   <resource-ref>
