@@ -73,10 +73,10 @@ private boolean processUser(final HttpServletRequest req, final HttpServletRespo
                     break;
                     case "GET":
                         LOGGER.warn("HTTP GET Method requested!");
-                        new ListUserRR(req,res,getConnection()).login();
+                        new ListUserRR(req,res,getConnection()).doServe();
                         break;
                 default:
-                    LOGGER.warn("Unsupported operation for URI /user);
+                    LOGGER.warn("Unsupported operation for URI /user");
 
                     m = new Message("Unsupported operation for URI /user.", "E4A5",
                             String.format("Requested operation %s.", method));
