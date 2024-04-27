@@ -37,6 +37,7 @@ public final class CreateUserRR extends AbstractRR {
         //     res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         //     new Message("Failed to create user account.").toJSON(res.getOutputStream());
         // }
+
         User u = null;
         Message m = null;
         try {
@@ -88,3 +89,4 @@ public final class CreateUserRR extends AbstractRR {
 
     }
 }
+//all necessary changes done
