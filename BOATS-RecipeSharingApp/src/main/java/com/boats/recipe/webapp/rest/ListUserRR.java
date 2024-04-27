@@ -21,7 +21,7 @@ public class ListUserRR extends AbstractRR {
     public ListUserRR(final HttpServletRequest req, final HttpServletResponse res, Connection con) {
         super(Actions.READ_USER, req, res, con);
     }
-        protected void doServe() throws IOException {
+        public void login() throws IOException {
             List<User> us = null;
             Message m = null;
 //            String username = "",password = "";
