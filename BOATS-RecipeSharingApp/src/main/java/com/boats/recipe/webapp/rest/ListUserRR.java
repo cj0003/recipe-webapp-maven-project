@@ -22,9 +22,10 @@ public class ListUserRR extends AbstractRR {
         super(Actions.READ_USER, req, res, con);
     }
         public void login() throws IOException {
-            List<User> us = null;
+            List<User> us;
             Message m = null;
-//            String username = "",password = "";
+           String username = req.getParameter("email");
+         String password = req.getParameter("password");
             try{
                 //create a dao for accessing the list of users
                 us = new ReadUserDAO(con,username,password).access().getOutputParam();
