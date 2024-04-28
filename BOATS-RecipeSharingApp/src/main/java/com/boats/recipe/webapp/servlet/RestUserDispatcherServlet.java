@@ -66,15 +66,16 @@ private boolean processUser(final HttpServletRequest req, final HttpServletRespo
 
             // if method GET, list users
             // if method POST, create user
-            switch (method) {
+            switch (method)
+            {
                 case "POST":
                     LOGGER.warn("HTTP POST Method requested!");
                     new CreateUserRR(req, res, getConnection()).doServe();
                     break;
-                    case "GET":
-                        LOGGER.warn("HTTP GET Method requested!");
-                        new ListUserRR(req,res,getConnection()).doServe();
-                        break;
+                case "GET":
+                    LOGGER.warn("HTTP GET Method requested!");
+                    new ListUserRR(req, res, getConnection()).doServe();
+                    break;
                 default:
                     LOGGER.warn("Unsupported operation for URI /user");
 
@@ -85,6 +86,18 @@ private boolean processUser(final HttpServletRequest req, final HttpServletRespo
                     break;
 
             }
+        }else
+        {
+            LOGGER.warn("Unsupported operation for URI /user in else");
+
+            m = new Message("Unsupported operation for URI /user.", "E4A5",
+                    String.format("Requested operation %s.", method));
+            res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+            m.toJSON(res.getOutputStream());
+
         }
+
+        }
+        return true;
     }
 }
