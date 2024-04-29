@@ -14,7 +14,7 @@ public final class ReadUserDAO extends AbstractDAO<User> {
 
 //    private static final String STATEMENT = "SELECT * FROM recipe_platform_schema.user WHERE username = ? AND password = ?";
 
-    private static final String STATEMENT = "SELECT * FROM user WHERE id = ?";
+    private static final String STATEMENT = "SELECT * FROM recipe_platform_schema.user WHERE id = ?";
 //    private final String username;
 //    private final String password;
 
@@ -53,7 +53,7 @@ public ReadUserDAO(final Connection connection, final int userid) {
                         rs.getString("surname"),
                         rs.getString("bio"),
                         rs.getString("email"),
-                        rs.getTimestamp("registration_date"),
+                        rs.getTimestamp("reg_date"),
                         rs.getBytes("image"),
                         rs.getString("image_type")
                 );
