@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.sql.Time;
 import java.io.OutputStream; // Add this import for OutputStream
 import java.io.EOFException; // Add this import for EOFException
+import java.sql.Timestamp;
 
 public class User extends AbstractResource {
 
@@ -19,12 +20,12 @@ public class User extends AbstractResource {
     private final String password;
     private final String username;
     private final String bio;
-    private final Time regDate;
+    private final Timestamp regDate;
     private final byte[] image;
     private final String imageType;
 
     public User(final int id, final String name, final String surname, final String email, final String password, final String username, final String bio,
-                final Time regDate, final byte[] image, final String imageType) {
+                final Timestamp regDate, final byte[] image, final String imageType) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -65,7 +66,7 @@ public class User extends AbstractResource {
         return bio;
     }
 
-    public final Time getRegDate() {
+    public final Timestamp getRegDate() {
         return regDate;
     }
 
@@ -109,7 +110,7 @@ public class User extends AbstractResource {
         String jPassword = null;
         String jUsername = null;
         String jBio = null;
-        Time jRegDate = null;
+        Timestamp jRegDate = null;
         byte[] jImage = null;
         String jImageType = null;
 
@@ -158,7 +159,7 @@ public class User extends AbstractResource {
                         case "regDate":
                             jp.nextToken();
                             // Convert string to Time if needed
-                            jRegDate = Time.valueOf(jp.getText());
+                            jRegDate = Timestamp.valueOf(jp.getText());
                             break;
                         // Parse image and imageType fields if needed
 

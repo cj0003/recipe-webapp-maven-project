@@ -4,8 +4,8 @@ import com.boats.recipe.webapp.database.CreateUserDAO;
 import com.boats.recipe.webapp.resources.LogContext;
 import com.boats.recipe.webapp.resources.Message;
 import com.boats.recipe.webapp.rest.*;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -21,9 +21,9 @@ public class RestUserSignupServlet extends AbstractDatabaseServlet{
     private static final long serialVersionUID = 1L;
     private String message;
 
-    public void init() {
-        message = "Hello World! now you are in Signup servlet";
-    }
+//    public void init() {
+//        message = "Hello World! now you are in Signup servlet";
+//    }
 
 //    public CreateUserDAO createUserDAO = new CreateUserDAO(getConnection(),);
 
@@ -33,9 +33,40 @@ public class RestUserSignupServlet extends AbstractDatabaseServlet{
 
     @Override
     public void service(HttpServletRequest request, HttpServletResponse response) throws  IOException {
-    response.getWriter().append("Served at: ").append(request.getContextPath());
+//    response.getWriter().append("Served at: ").append(request.getContextPath());
 //    RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 //        dispatcher.forward(request, response);
+
+         LogContext.setIPAddress(request.getRemoteAddr());
+
+            final OutputStream out = response.getOutputStream();
+            try{
+                if(processUserRegister(request, response)){
+                    return;
+                }
+                LOGGER.warn("Unknown resource requested: %s.", request.getRequestURI());
+
+                final Message m = new Message("Unknown resource requested.", "E4A6",
+                        String.format("Requested resource is %s.", request.getRequestURI()));
+                response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                response.setContentType(JSON_UTF_8_MEDIA_TYPE);
+                m.toJSON(out);
+            }catch (Throwable t){
+                LOGGER.error("Unexpected error while processing the REST resource.", t);
+
+                final Message m = new Message("Unexpected error.", "E5A1", t.getMessage());
+                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                m.toJSON(out);
+            }finally {
+                if (out != null) {
+                    out.flush();
+                    out.close();
+                }
+
+                LogContext.removeIPAddress();
+            }
+
+
         }
 
 
@@ -61,6 +92,11 @@ public class RestUserSignupServlet extends AbstractDatabaseServlet{
             System.out.println("Path is not empty");
             System.out.println(method);
             switch (method) {
+
+                    case "GET":
+                        new ReadUserRR(req, res, getConnection()).serve();
+                        break;
+
 
                 case "POST":
                     LOGGER.warn("HTTP POST Method requested!! Post method works");

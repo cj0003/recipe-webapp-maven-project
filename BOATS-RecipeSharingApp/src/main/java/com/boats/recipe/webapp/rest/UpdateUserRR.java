@@ -2,12 +2,12 @@ package com.boats.recipe.webapp.rest;
 
 import com.boats.recipe.webapp.database.UpdateUserDAO;
 import com.boats.recipe.webapp.resources.Actions;
-import com.boats.recipe.webapp.model.User;
+import com.boats.recipe.webapp.resources.User;
 import com.boats.recipe.webapp.resources.LogContext;
 import com.boats.recipe.webapp.resources.Message;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.EOFException;
 import java.io.IOException;
 import java.sql.Connection;
@@ -26,13 +26,14 @@ public final class UpdateUserRR extends AbstractRR {
             try {
                 // parse the URI path to extract the badge
                 String path = req.getRequestURI();
-                path = path.substring(path.lastIndexOf("recipe") + 6);
+                path = path.substring(path.lastIndexOf("user") + 4);
 
                 final int badge = Integer.parseInt(path.substring(1));
 
                 LogContext.setResource(Integer.toString(badge));
 
                 final User user = User.fromJSON(req.getInputStream());
+
 
 
                 if (badge != user.getId()) {

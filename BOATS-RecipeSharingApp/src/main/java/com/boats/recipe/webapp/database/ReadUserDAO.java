@@ -1,6 +1,6 @@
 package com.boats.recipe.webapp.database;
 
-import com.boats.recipe.webapp.model.User;
+import com.boats.recipe.webapp.resources.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,15 +12,19 @@ import java.sql.SQLException;
  */
 public final class ReadUserDAO extends AbstractDAO<User> {
 
-    private static final String STATEMENT = "SELECT * FROM recipe_platform_schema.user WHERE username = ? AND password = ?";
+//    private static final String STATEMENT = "SELECT * FROM recipe_platform_schema.user WHERE username = ? AND password = ?";
 
-    private final String username;
-    private final String password;
+    private static final String STATEMENT = "SELECT * FROM user WHERE id = ?";
+//    private final String username;
+//    private final String password;
 
-    public ReadUserDAO(final Connection connection, final String username, final String password) {
+    private final int userid;
+//    public ReadUserDAO(final Connection connection, final String username, final String password) {
+public ReadUserDAO(final Connection connection, final int userid) {
         super(connection);
-        this.username = username;
-        this.password = password;
+//        this.username = username;
+//        this.password = password;
+    this.userid = userid;
     }
 
     @Override
@@ -35,8 +39,9 @@ public final class ReadUserDAO extends AbstractDAO<User> {
         try  {
             pstmt = con.prepareStatement(STATEMENT);
 
-            pstmt.setString(1, username);
-            pstmt.setString(2, password);
+//            pstmt.setString(1, username);
+//            pstmt.setString(2, password);
+            pstmt.setInt(1,userid);
             rs = pstmt.executeQuery();
 
             if (rs.next()) {
@@ -52,9 +57,13 @@ public final class ReadUserDAO extends AbstractDAO<User> {
                         rs.getBytes("image"),
                         rs.getString("image_type")
                 );
-                LOGGER.info("Login successful for user: {}", username);
+//                LOGGER.info("Login successful for user: {}", username);
+
+                LOGGER.info("Login successful for user: {}", u.getId());
             } else {
-                LOGGER.info("Login failed for user: {}", username);
+//                LOGGER.info("Login failed for user: {}", username);
+
+                LOGGER.info("Login failed for user: {}", u.getId());
             }}
         finally {
             if (rs != null) {

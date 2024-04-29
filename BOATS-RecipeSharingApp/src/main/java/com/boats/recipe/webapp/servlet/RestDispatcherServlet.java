@@ -3,8 +3,8 @@ package com.boats.recipe.webapp.servlet;
 import com.boats.recipe.webapp.resources.LogContext;
 import com.boats.recipe.webapp.resources.Message;
 import com.boats.recipe.webapp.rest.*;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -64,7 +64,7 @@ public final class RestDispatcherServlet extends AbstractDatabaseServlet{
         // if method POST, create recipe
         if (path.isEmpty() || path.equals("/")) {
 
-            System.out.println("PAth is not empty");
+            System.out.println("Path is not empty");
             System.out.println(method);
             switch (method) {
                 case "GET":

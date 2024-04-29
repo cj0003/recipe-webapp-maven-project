@@ -15,7 +15,7 @@
     <servlet-name>UserManagerServlet</servlet-name>
     <display-name>UserManagerServlet</display-name>
     <description></description>
-    <servlet-class>com.boats.recipe.webapp.servlet.RestUserDispatcherServlet</servlet-class>
+    <servlet-class>com.boats.recipe.webapp.servlet.RestUserSignupServlet</servlet-class>
   </servlet>
 
 
@@ -26,7 +26,7 @@
 
   <servlet-mapping>
     <servlet-name>UserManagerServlet</servlet-name>
-    <url-pattern>/user/*</url-pattern>
+    <url-pattern>/rest/user/*</url-pattern>
   </servlet-mapping>
 
   <resource-ref>

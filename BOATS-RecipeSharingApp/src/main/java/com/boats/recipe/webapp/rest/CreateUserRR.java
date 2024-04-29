@@ -2,13 +2,12 @@ package com.boats.recipe.webapp.rest;
 
 import com.boats.recipe.webapp.database.CreateRecipeDAO;
 import com.boats.recipe.webapp.database.CreateUserDAO;
-import com.boats.recipe.webapp.model.Recipe;
 import com.boats.recipe.webapp.resources.Actions;
-import com.boats.recipe.webapp.model.User;
+import com.boats.recipe.webapp.resources.User;
 import com.boats.recipe.webapp.resources.LogContext;
 import com.boats.recipe.webapp.resources.Message;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -22,7 +21,7 @@ public final class CreateUserRR extends AbstractRR {
     }
 
     @Override
-    protected void doServe() throws IOException {
+    public void doServe() throws IOException {
         // Extract user signup data from the request body
         // Validate the input data (e.g., check for required fields)
         // Create a new user account in the database

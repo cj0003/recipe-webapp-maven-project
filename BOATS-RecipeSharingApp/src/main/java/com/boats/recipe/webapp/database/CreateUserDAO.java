@@ -1,7 +1,7 @@
 package com.boats.recipe.webapp.database;
 
 
-import com.boats.recipe.webapp.model.User;
+import com.boats.recipe.webapp.resources.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -61,7 +61,7 @@ public final class CreateUserDAO extends AbstractDAO<User> {
             pstmt.setString(4, user.getPassword());
             pstmt.setString(5, user.getUsername());
             pstmt.setString(6, user.getBio());
-            pstmt.setTimestamp(7, user.getRegistrationDate());
+            pstmt.setTimestamp(7, user.getRegDate());
             pstmt.setBytes(8, user.getImage());
             pstmt.setString(9, user.getImageType());
 

@@ -1,11 +1,11 @@
 package com.boats.recipe.webapp.servlet;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServlet;
 import javax.sql.DataSource;
 
 import org.apache.logging.log4j.LogManager;

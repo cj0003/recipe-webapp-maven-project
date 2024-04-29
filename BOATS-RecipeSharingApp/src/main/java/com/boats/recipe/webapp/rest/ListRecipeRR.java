@@ -7,8 +7,8 @@ import com.boats.recipe.webapp.resources.LogContext;
 import com.boats.recipe.webapp.resources.Message;
 import com.boats.recipe.webapp.resources.ResourceList;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.EOFException;
 import java.io.IOException;
